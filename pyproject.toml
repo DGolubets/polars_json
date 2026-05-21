@@ -1,0 +1,32 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0", "polars>=1.3.0"]
+build-backend = "maturin"
+
+[project]
+name = "polars-json"
+requires-python = ">=3.8"
+classifiers = [
+  "Programming Language :: Rust",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = ["version"]
+dependencies = [
+    "polars>=1.8.2",
+]
+
+[tool.maturin]
+module-name = "polars_json._internal"
+
+[[tool.mypy.overrides]]
+module = "polars.utils.udfs"
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "maturin>=1.13.3",
+    "mypy>=1.0",
+    "polars>=1.8.2",
+    "pytest>=8.3.5",
+    "ruff>=0.1.0",
+]
